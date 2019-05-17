@@ -1,0 +1,84 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Your Activities</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-grid>
+    <ion-list *ngFor='let a of lista | async'>
+      <ion-card mode="md" class="cards" *ngIf="a.ativo === true">
+      
+        <ion-card-header>
+          <ion-card-title text-center text-uppercase color="primary" class="card-title">
+            {{a.nome}}
+          </ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-row text-center>
+            <ion-col class="col-12" *ngIf="a.descricao != ''">
+              <p class="desc-card">{{a.descricao}}</p>
+            </ion-col>
+          
+            <ion-col class="col-12" *ngIf="a.descricao === ''">
+              <p class="desc-card">There isn't a description for this aticity</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row margin-vertical text-center>
+            
+            <ion-col class="col-4">
+              <p>
+                <strong>Post Date</strong> <br />
+                <span class="color-info">{{a.dataPostada}}</span>
+              </p>
+            </ion-col>
+      
+            <ion-col class="col-4">
+              <p>
+                <strong>Drop Date</strong> <br />
+                <span class="color-info">{{a.dataEntrega}}</span>
+              </p>
+            </ion-col>
+
+            <ion-col class="col-4">
+              <p>
+                <strong>Play Audio</strong> <br />
+                <ion-icon name="play" item-end color="secondary" (click)="audioAtividade()"></ion-icon>
+              </p>
+            </ion-col>
+
+          </ion-row>
+
+          <ion-row>
+            <ion-item class="separacao">
+              <ion-label id="active" fixed>
+                Awnser
+              </ion-label>
+              <ion-icon name="mic" item-end color="secondary" (click)="gravar()" *ngIf="!recording"></ion-icon>
+              <ion-icon name="square" item-end color="secondary" (click)="pararGravar()" *ngIf="recording"></ion-icon>
+            </ion-item>
+            
+            <ion-item *ngIf="recorded">
+              <ion-label id="play_audio" fixed>Play Awnser</ion-label>
+              <ion-icon name="play" item-end color="secondary" (click)="reproduzir()" *ngIf="recorded"></ion-icon>
+            </ion-item>
+          </ion-row>
+
+          <ion-row>
+            <ion-item>
+              <ion-buttons>
+                <button type="submit" no-margin block round ion-button color="secondary" (submit)="responder(a.id);">Send Awnser</button>                
+              </ion-buttons>
+            </ion-item>
+          </ion-row>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </ion-grid>
+</ion-content>

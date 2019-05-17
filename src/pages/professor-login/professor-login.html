@@ -1,0 +1,47 @@
+<ion-header >
+    <ion-navbar color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title no-margin text-capitalize>Professor Login</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+
+  <ion-content>
+      <form method="POST" #form="ngForm" (submit)="login_professor(form)">
+        <ion-list inset no-lines>
+    
+          <ion-item>
+            <ion-label for="email" floating >
+              <ion-icon name="mail" color="primary"></ion-icon> E-mail
+            </ion-label>
+            <ion-input name="email" id="email"  type="email"  required ngModel></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label id="senha" floating >
+              <ion-icon name="key" color="primary"></ion-icon> Password
+            </ion-label>
+            <ion-input name="senha" id="senha" type="password" required ngModel></ion-input>
+          </ion-item>
+          
+        </ion-list>
+
+        <ion-buttons margin-vertical end>
+          <button type="button" ion-button clear small no-margin text-lowercase color="dark" (click)="recuperar_senha(form)">Forgot your
+            password?</button>
+        </ion-buttons>
+
+        <ion-buttons>
+          <button type="submit" no-margin block outline round ion-button color="secondary">Login</button>
+        </ion-buttons>
+    
+        <ion-buttons margin-top>
+          <button type="button" no-margin block clear round ion-button color="primary" (click)="goto_professor_cad()">Sign Up</button>
+        </ion-buttons>
+
+      </form>
+    
+    </ion-content>
+    
